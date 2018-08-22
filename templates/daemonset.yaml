@@ -211,16 +211,8 @@ spec:
           configMap:
             name: {{ template "sumologic-fluentd.fluentdUserConfig.fullname" . }}
         {{- end }}
-      tolerations:
-        - key: node-role.kubernetes.io/controlplane
-          effect: NoSchedule
-          operator: Equal
-          value: "true"
-        - key: node-role.kubernetes.io/etcd
-          effect: NoSchedule
-          operator: Equal
-          value: "true"
     {{- if .Values.tolerations }}
+      tolerations:
 {{ toYaml .Values.tolerations | indent 8 }}
     {{- end }}
   updateStrategy:
